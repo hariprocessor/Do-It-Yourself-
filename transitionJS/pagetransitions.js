@@ -254,7 +254,7 @@ function coordinate_json(ajax){
             test.createModule("testmodule_" + id);
             test.setModulePos("testmodule_" + id, x, y);
 	    $("#testmodule_"+id+" p")[0].innerHTML = data[i]['name'];
-	    $("#testmodule_"+id)[0].onclick = url;
+
 	}
 	else{
 	    

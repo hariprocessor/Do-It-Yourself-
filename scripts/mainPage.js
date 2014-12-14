@@ -72,7 +72,6 @@ $('#testmain_DisplayCircle0').css("width","300px");
                     test.setModulePos("testmodule_" + id,800 + 250 * Math.cos((360 * module_count / 12 ) * Math.PI / 180 ),300 + 250 * Math.sin((360 / 12 * module_count) * Math.PI / 180));
 
 		    $("#testmodule_"+id+" p")[0].innerHTML = ui.draggable[0].innerHTML;
-		    $("#testmodule_"+id)[0].onclick = url;
 
                     module_count++;
                 }
