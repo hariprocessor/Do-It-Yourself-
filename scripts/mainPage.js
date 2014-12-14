@@ -72,21 +72,7 @@ $('#testmain_DisplayCircle0').css("width","300px");
                     test.setModulePos("testmodule_" + id,800 + 250 * Math.cos((360 * module_count / 12 ) * Math.PI / 180 ),300 + 250 * Math.sin((360 / 12 * module_count) * Math.PI / 180));
 
 		    $("#testmodule_"+id+" p")[0].innerHTML = ui.draggable[0].innerHTML;
-		    $.ajax({
-			type: "POST",
-			url: "/controller/delete_module.php",
-			data: {
-			    id : arr[i].id
-			},
-			success:function(data){
-			    var arr = $(".selected");
-			    for(var i = 0; i < arr.length; i++){
-				if(arr[i].id == data)
-				    arr[i].remove();
-				
-			    }
-			}
-		    });
+		    $("#testmodule_"+id)[0].onclick = url;
 
                     module_count++;
                 }
@@ -330,4 +316,20 @@ function upload1(){
     console.log('hi');
     var url = "http://diy.hariprocessor.com/upload/upload.html";
     window.open(url, "", "width=300, height=600, resizable=no, scrollbars=no, status=no");
+}
+
+function url(){
+
+    var id = this.id.split("_")[1];
+    $.ajax({
+	type: "POST",
+	url: "/controller/url.php",
+	data: {
+	    id : id
+	},
+	success:function(data){
+	    console.log(data);
+	}
+    });
+
 }
