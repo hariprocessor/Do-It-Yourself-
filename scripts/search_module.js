@@ -56,11 +56,9 @@ window.onload = function (){
 
 
 $(function() {
-    $( "#search_modal" ).dialog({
-	autoOpen: false
-    });
-    
+    $( "#search_modal" ).modal();
     $( "#search" ).click(function() {
-	$( "#search_modal" ).dialog( "open" );
+	console.log("HELLO");
+	$( "#search_modal" ).modal("show");
     });
 });

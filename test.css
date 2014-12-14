@@ -1,0 +1,80 @@
+body {
+    font-family: "Amaranth";
+    color: #105B63;
+}
+
+.mainpage {
+    background: linear-gradient(to bottom, #FFFAD5, #FFF3A6);
+/*    background-color: #FFFAD5;*/
+}
+
+.circle{
+    border: 3px solid #BD4932;
+    background-color: #F2875E;
+    font-size: 20pt;
+}
+
+#menu {
+    border: 3px solid #F2875E;
+    border-radius: 0;
+    background-color: #F2875E;
+
+}
+
+#module_list li{
+    font-size: 12pt;
+    color: #105B63;
+}
+
+/*.menu_button {
+    font-size: 12pt;
+    color: #105B63;
+    background-color: #FFFAD5;
+}
+*/
+
+.menu_button {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	color: #FFFAD5;
+	padding:5px 10px;
+	text-shadow:0px -1px 0px #2b665e;
+	background-color: #6A9C95;
+
+}
+.menu_button:hover {
+	background-color:#6c7c7c;
+}
+.menu_button:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+/* test upload css */
+#upload {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+
+
+#lock {
+    position:fixed; top:2%; right:2%;
+    visibility: hidden;    
+}
+
+/* Reset Iframe css*/
+#resetIframe {
+    position: fixed; top: 2%; right: 5%;
+    visibility: hidden;
+}
+
+

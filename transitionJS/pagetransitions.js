@@ -35,7 +35,8 @@ function getEmailCallback(obj){
 	},
 	success:function(data){
 	    console.log(data),
-	    modulelist()
+	    modulelist(),
+	    coordinate()
 	}
     });
 }
@@ -472,12 +473,43 @@ function modulelist_json(ajax){
 	var li = document.createElement("li");
 	$("#module_list")[0].appendChild(li);
 	li.innerHTML = data[i]['name'];
-	li.classList.add("default");
+       li.classList.add("default");
        li.id = data[i]['id'];
        var arr = $("li");
-       arr.draggable({ revert: "invalid" });
+//       arr.draggable({ revert: "invalid" });
 
 
     }
 }
 
+
+
+function coordinate(){
+    $.ajax({
+	type: "POST",
+	url: "/controller/coordinate.php",
+	success:coordinate_json
+    });
+    
+}
+
+function coordinate_json(ajax){
+    var data = JSON.parse(ajax);
+    for (var i = 0; i < data.length; i++){
+	var x = parseInt(data[i]['x']);
+	var y = parseInt(data[i]['y']);
+
+	
+	if(x != -1 && y != -1){
+	    id = data[i]['id'];
+	    console.log(data);
+	    console.log(id);
+            test.createModule("testmodule_" + id);
+            test.setModulePos("testmodule_" + id, x, y);
+	    $("#testmodule_"+id+" p")[0].innerHTML = data[i]['name'];
+	}
+	else{
+
+	}
+    }
+}

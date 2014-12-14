@@ -8,6 +8,7 @@
     
     <script type="text/javascript" src="transitionJS/modernizr.custom.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="moduletest/module.css"/>
     <link rel="stylesheet" type="text/css" href="css/loginPage.css"/>
     <link rel="stylesheet" type="text/css" href="css/mainPage.css"/>
     
@@ -67,6 +68,7 @@
 
 	    <div class="credit_modal">
 	      <p>Credit</p>
+	      <p>2012037506 황교준</p>
 	      <span class="close">Close Me</span>
 	    </div>
 	  </div>
@@ -74,7 +76,7 @@
       </div>
 
 
-      <div class="pt-page pt-page-2 mainpage">
+    <div class="pt-page pt-page-2 mainpage" id="testmain">
 	<!-- Side 메뉴 -->
 	<span id = "menubutton" class="entypo-menu"></span>
 
@@ -83,7 +85,8 @@
           <header>
             <p>Module list</p> <span id = "close" class="entypo-cancel"></span>
             <button id = "delete" class="menu_button">Delete</button>
-            <button id = "search" class="menu_button">Search</button> <br />
+	    <button type="button" class="menu_button" data-toggle="modal" data-target="#search_modal">Search</button>
+            <!-- <button id = "search" class="menu_button">Search</button> --><br />
             <button id = "confirm" class="menu_button">Confirm</button>
             <button id = "cancel" class="menu_button">Cancel</button>
 
@@ -95,25 +98,20 @@
         </div>
 
 	<!-- Main -->
-	<div id="main">
-	  <div class="sphereSquare">
-	    <figure id="module" class="ball bubble" data-type="zoomin"></figure>
-	  </div>				
-	</div>
-
+<!--
 	<div class="overlay-container">
 	  <div class="window-container zoomin">
-	    <div class="module_modal">
-	      <p>Module</p>
-	      <span class="close">Close Me</span>
-	    </div>
+	    <iframe id="modal_iframe"></iframe>
+	    <span class="close">Close Me</span>	  
 	  </div>
 	</div>	
-
+-->
       </div>
     </div>
     <!-- 페이지1(스타트페이지)의 드래그 기능 위한 JS -->
     <script type="text/javascript" src="scripts/dom.jsPlumb-1.6.4-min.js"></script>
+    <script type="text/javascript" src="moduletest/module.js"></script>
+    
     <script type="text/javascript" src="scripts/loginPage.js"></script>
     <script type="text/javascript" src="scripts/mainPage.js"></script>
 
@@ -131,22 +129,51 @@
     </script>
 
     <button id="lock">Save</button>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <div id="search_modal" title="search_modal">
-      <h3>찾고자 하는 모듈의 이름을 입력하세요.</h3>
-      
-      <input type="text" id="q" name="q" />
-      <button id="find">Submit</button>
-      
-      <ol id = "modulelist">
-	
-      </ol>
-      <button>confirm</button>
+    <button id="resetIframe">Reset Iframe</button>
 
-    </div>
+
+
+
+    <!-- <div id="search_modal" title="search_modal"> -->
+    <!--   <h3>찾고자 하는 모듈의 이름을 입력하세요.</h3> -->
+      
+    <!--   <input type="text" id="q" name="q" /> -->
+    <!--   <button id="find">Submit</button> -->
+      
+    <!--   <ol id = "modulelist"> -->
+	
+    <!--   </ol> -->
+    <!--   <button>confirm</button> -->
+
+    <!-- </div> -->
 
 
 
   </body>
+
+    <div class="modal fade" id="search_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+            <h4 class="modal-title">모듈찾기</h4>
+	  </div>
+	  <div class="modal-body">
+	    <h3>찾고자 하는 모듈의 이름을 입력하세요.</h3>
+	    
+	    <input type="text" id="q" name="q" />
+	    <button id="find">Submit</button>
+	    
+	    <ul id="modulelist">
+	      
+	    </ul>
+	  </div>
+	  <div class="modal-footer">
+            <button id="search_modal_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="search_modal_confirm" type="button" class="btn btn-primary">Save changes</button>
+	  </div>
+	</div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
 </html>
+

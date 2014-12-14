@@ -37,9 +37,12 @@ jsPlumb.ready(function() {
 
 
 
+
+
+
+
 $(document).ready(function() {
     
-
     var elementPositionX, elementPositionY;
     
     /* 모달창 띄우는 함수                                         */
@@ -97,3 +100,5 @@ $(document).ready(function() {
         $('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
     });
 });
+
+
