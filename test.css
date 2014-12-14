@@ -70,6 +70,10 @@ body {
     position:fixed; top:2%; right:2%;
     visibility: hidden;    
 }
+#upload1 {
+    position:fixed; top:2%; right:10%;
+    visibility: hidden;    
+}
 
 /* Reset Iframe css*/
 #resetIframe {
@@ -78,3 +82,38 @@ body {
 }
 
 
+/*modal css*/
+div.login_modal {
+  height: 400px;
+  background-image :url("image/curly_final_diy_banner.jpg");
+  background-repeat : no-repeat;
+  background-size : auto auto;
+  background-position : center;
+}
+span.close {
+  right : 20px;
+  width : 125px;
+  height : 35px;
+  bottom: 0px;
+  margin-top : 0px;
+  display : inline-block;
+  position:  absolute;
+  opacity : 1.0;
+}
+
+span#signinButton {
+  display : inline-block;
+  left : 20px;
+  bottom : 15px;
+  width : auto;
+  height : auto;
+  position : absolute;
+}
+
+div.usage_modal {
+  height : 200px;
+}
+
+div.credit_modal {
+  height : 80px;
+}

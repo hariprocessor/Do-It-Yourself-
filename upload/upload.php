@@ -7,22 +7,38 @@ $type = $_FILES["module_file"]["type"];
 $filename = $_FILES["module_file"]["name"];
 $temp = $_FILES["module_file"]["tmp_name"];
 $username = $_SESSION["email"];
-print $username;
+
 if(!isset($_SESSION["email"])){
     die("You have to login please.");
 }
-
 if(!file_exists("../../module/$username/$name")){
     mkdir("../../module/$username/$name");
     if(is_uploaded_file($temp)){
 	$path = "/home/diy1/module/$username/$name";
         move_uploaded_file($temp, $path."/$filename");
-	print $path."</br>";
-	print $username;
-	echo shell_exec("scp -i /home/diy1/.ssh/diy_key -r $path hari@192.168.122.90:/home/hari/module/$username/");
     }
 }
-else{
+
+$dbname = "diy_db";
+$username = "diy";
+$password = "tomato";
+$db = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try{
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//    $email = $db->quote($email);
+    $email = $_SESSION["email"];
+    $rows = $db->query("select id from user where email='$email';");
+    $id = 0;
+    foreach($rows as $row){
+	$id = $row["id"];
+    }
+    $rows = $db->query("insert into module(name, user_id, status) values('$name', $id, 1);");
+
+} catch (PDOException $e) {
+    print "pdo";
+    print $e;
 }
 
+	echo shell_exec("sshpass -p 'dufrhd3182' scp -r $path hari@192.168.122.90:/home/hari/module/$email/$name");
 ?>
