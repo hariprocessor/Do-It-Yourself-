@@ -26,7 +26,7 @@
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <!--<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>-->
     <link rel="stylesheet" type="text/css" href="test.css"/>
-
+	
 
   </head>
   <body>
@@ -50,14 +50,14 @@
 	  <div class="window-container zoomin">
 	    <div class="login_modal">
 	      <span id="signinButton">
-		<span
-		   class="g-signin"
-		   data-callback="signinCallback"
-		   data-clientid="113389404643-f6s9uiqiiho83f2pbv97fg98jgdngo95.apps.googleusercontent.com"
-		   data-cookiepolicy="single_host_origin"
-		   data-requestvisibleactions="http://schema.org/AddAction"
-		   data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email">
-		</span>
+			<span
+			   class="g-signin"
+			   data-callback="signinCallback"
+			   data-clientid="113389404643-f6s9uiqiiho83f2pbv97fg98jgdngo95.apps.googleusercontent.com"
+			   data-cookiepolicy="single_host_origin"
+			   data-requestvisibleactions="http://schema.org/AddAction"
+			   data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile">
+			</span>
 	      </span>
 	      <span class="close">Close Me</span>
 	    </div>
@@ -130,7 +130,7 @@
 
     <button id="lock">Save</button>
     <button id="resetIframe">Reset Iframe</button>
-
+	<div><p id="loginStatus">welcome!</p></div>
 
 
 
@@ -174,6 +174,8 @@
 	</div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+
 
 </html>
 

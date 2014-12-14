@@ -2,15 +2,21 @@ var loginFlag = false;
 var email = null;
 function signinCallback(authResult) {
     if (authResult['status']['signed_in']) {
+    	//document.getElementById("loginStatus").innerHTML;
+    	
+	/* hari code */
 	gapi.auth.setToken(authResult);
 	console.log(getEmail());
+	/**/
 	loginFlag = true;
 	$("#iterateEffects").trigger("mousedown").trigger("mouseup");
+	$("loginStatus").update("callback!");
 	
     } else {
 	console.log('Sign-in state: ' + authResult['error']);
 	loginFlag = false;
     }
+
 }
 
 /*hari code*/
@@ -22,6 +28,17 @@ function getEmail(){
 }
 
 function getEmailCallback(obj){
+	var el = document.getElementById('loginStatus');
+    var message = 'welcome ';
+
+    if (obj['email']) {
+      message += obj['email'];
+    }
+    message += ":)";
+    //console.log(obj);   // 전체 개체를 검사하려면 주석을 해제합니다.
+
+    el.innerHTML = message;
+    //toggleElement('email');
     if (obj['email']) {
 	email = obj['email'];
 	console.log(email);
@@ -34,9 +51,11 @@ function getEmailCallback(obj){
 	    email: email
 	},
 	success:function(data){
-	    console.log(data),
-	    modulelist(),
-	    coordinate()
+	    console.log(data);
+	    coordinate();
+	    modulelist();
+	    $("#lock").css("visibility","visible");
+
 	}
     });
 }
@@ -71,6 +90,7 @@ var PageTransitions = (function() {
   	} );
 
   	$pages.eq( current ).addClass( 'pt-page-current' );
+
 
   	$( '#dl-menu' ).dlmenu( {
   	    animationClasses : { in : 'dl-animate-in-2', out : 'dl-animate-out-2' },
@@ -107,7 +127,6 @@ var PageTransitions = (function() {
     }
 
     function nextPage(options ) {
-
   	var animation = (options.animation) ? options.animation : options;
 
   	if( isAnimating ) {
@@ -439,7 +458,7 @@ var PageTransitions = (function() {
   	endNextPage = false;
   	resetPage( $outpage, $inpage );
   	isAnimating = false;
-	$("#lock").css("visibility", "visible");
+
     }
 
     function resetPage( $outpage, $inpage ) {
@@ -455,7 +474,7 @@ var PageTransitions = (function() {
     };
 
 })();
- 
+
 
 /* hari code module list ajax */
 function modulelist(){
@@ -470,9 +489,9 @@ function modulelist_json(ajax){
 //    console.log(ajax.responseText);
     var data = JSON.parse(ajax);
    for (var i = 0; i < data.length; i++){
-	var li = document.createElement("li");
-	$("#module_list")[0].appendChild(li);
-	li.innerHTML = data[i]['name'];
+       var li = document.createElement("li");
+       $("#module_list")[0].appendChild(li);
+       li.innerHTML = data[i]['name'];
        li.classList.add("default");
        li.id = data[i]['id'];
        var arr = $("li");
@@ -498,7 +517,7 @@ function coordinate_json(ajax){
     for (var i = 0; i < data.length; i++){
 	var x = parseInt(data[i]['x']);
 	var y = parseInt(data[i]['y']);
-
+	
 	
 	if(x != -1 && y != -1){
 	    id = data[i]['id'];
@@ -509,7 +528,9 @@ function coordinate_json(ajax){
 	    $("#testmodule_"+id+" p")[0].innerHTML = data[i]['name'];
 	}
 	else{
-
-	}
+	    
+	    }
     }
 }
+
+

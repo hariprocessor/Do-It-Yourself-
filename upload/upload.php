@@ -15,11 +15,14 @@ if(!isset($_SESSION["email"])){
 if(!file_exists("../../module/$username/$name")){
     mkdir("../../module/$username/$name");
     if(is_uploaded_file($temp)){
-        move_uploaded_file($temp, "../../module/$username/$name/$filename");
+	$path = "/home/diy1/module/$username/$name";
+        move_uploaded_file($temp, $path."/$filename");
+	print $path."</br>";
+	print $username;
+	echo shell_exec("scp -i /home/diy1/.ssh/diy_key -r $path hari@192.168.122.90:/home/hari/module/$username/");
     }
 }
 else{
-    
 }
 
 ?>
