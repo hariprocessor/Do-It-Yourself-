@@ -215,8 +215,10 @@ function ModuleController() {
 		this.id = null;
 		this.url = "";
 		this.init = function(id,elem) {
+
 			this.elem = elem;
 			this.id = id;
+		    console.log("real id"+id);
 		    $("#" + id).draggable({
 		      	start: function() {
 			        console.log("drag start");
@@ -250,20 +252,26 @@ function ModuleController() {
 		      	scroll: false
 	    	})
 	    	.dblclick(function(){
-	          	$("#" + _Owner + "_DisplayFrame").attr('src',"http://www.w3schools.com");
+		    var __id =this.id.split("_")[1];
+		    url(__id, $("#" + _Owner + "_DisplayFrame"));
 	     })
 	    // 오른쪽 버튼 클릭 시 모달창으로 View
 	        .mousedown(function(e){
+
 	            if(e.which == 3)
 	            {
-	            	var type = $("#"+id).attr('data-type');
-	            	$("#modal_iframe").attr('src',"http://www.w3schools.com");
-	                $('.overlay-container').fadeIn(function() {                    
-	                        window.setTimeout(function(){
-	                            $('.window-container.'+type).addClass('window-container-visible');
-	                        }, 100);
-	                });					
+			var __id =this.id.split("_")[1];
+			url2(__id,$("#module_view_modal iframe"),e);
+			$("#module_view_modal").modal("show");
+	            	// var type = $("#"+id).attr('data-type');
+	            	// $("#modal_iframe").attr('src',"http://www.w3schools.com");
+	                // $('.overlay-container').fadeIn(function() {                    
+	                //         window.setTimeout(function(){
+	                //             $('.window-container.'+type).addClass('window-container-visible');
+	                //         }, 100);
+	                // });					
 	            }
+
 	        });
 		};
 

@@ -17,7 +17,7 @@ if(!file_exists("../../module/$username/$name")){
 	$path = "/home/diy1/module/$username/$name";
         move_uploaded_file($temp, $path."/$filename");
     }
-}
+
 
 $dbname = "diy_db";
 $username = "diy";
@@ -43,5 +43,5 @@ echo shell_exec("cd /home/diy1/module/$email/$name; unzip $name.zip;");
 
 echo shell_exec("sshpass -p 'dufrhd3182' ssh hari@192.168.122.90 'mkdir -p /home/hari/module/$email/'");
 echo shell_exec("sshpass -p 'dufrhd3182' scp -r $path hari@192.168.122.90:/home/hari/module/$email/$name");
-
+}
 ?>

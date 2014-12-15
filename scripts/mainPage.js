@@ -1,5 +1,14 @@
 var test;
+
+// kill right click
+window.oncontextmenu = function ()
+{
+    return false;
+}
+
 $(document).ready(function() { 
+    $("#module_view.modal").modal();
+    
     test = new ModuleController();
     test.init("testmain",null);
     /* 모달창 띄우는 함수                                         */
@@ -49,9 +58,9 @@ $(document).ready(function() {
     $('#testmain_DisplayCircle0').css("left","48%");
     $('#testmain_DisplayCircle0').css("top","43%");
 
-$('#testmain_DisplayCircle0').css("width","300px");
-    $('#testmain_DisplayCircle0').css("height","300px");
-    $('#testmain_DisplayCircle0').css("border-radius","300px");
+    $('#testmain_DisplayCircle0').css("width","600px");
+    $('#testmain_DisplayCircle0').css("height","600px");
+    $('#testmain_DisplayCircle0').css("border-radius","600px");
 
 
 
@@ -81,7 +90,7 @@ $('#testmain_DisplayCircle0').css("width","300px");
             }
         }
     });
-    $("#testmain_DisplayCircle0")[0].innerHTML = "";
+    $("#testmain_DisplayCircle0 p").remove();
 //    $("#testmain_DisplayCircle0").style.backgroundColor = "#F5EED2";
     $("#resetIframe").click(function() {
         $("#testmain_DisplayFrame").attr('src',"about:blank");
@@ -317,9 +326,8 @@ function upload1(){
     window.open(url, "", "width=300, height=600, resizable=no, scrollbars=no, status=no");
 }
 
-function url(){
-
-    var id = this.id.split("_")[1];
+function url(id, frame){
+    var url;
     $.ajax({
 	type: "POST",
 	url: "/controller/url.php",
@@ -327,8 +335,33 @@ function url(){
 	    id : id
 	},
 	success:function(data){
+	    console.log('---data');
 	    console.log(data);
+	    frame.attr('src', data);
 	}
     });
+    return url;
+}
 
+function url2(id, frame, e){
+    if(e.which != 3)
+	return ;
+
+    var type = $("#"+id).attr('data-type');
+    type = "zoomin";
+
+    var url;
+    $.ajax({
+	type: "POST",
+	url: "/controller/url.php",
+	data: {
+	    id : id
+	},
+	success:function(data){
+	    frame.attr('src',data);
+
+	    
+	}
+    });
+    return url;
 }

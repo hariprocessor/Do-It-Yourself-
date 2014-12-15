@@ -56,7 +56,8 @@ function getEmailCallback(obj){
 	    modulelist();
 	    $("#lock").css("visibility","visible");
 	    $("#upload1").css("visibility","visible");
-
+      $("#resetIframe").css("visibility","visible");
+      $('.close').trigger("click");
 	}
     });
 }

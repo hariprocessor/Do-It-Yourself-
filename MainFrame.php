@@ -100,7 +100,7 @@
         </div>
 
 	<!-- Main -->
-<!--
+  <!--
 	<div class="overlay-container">
 	  <div class="window-container zoomin">
 	    <iframe id="modal_iframe"></iframe>
@@ -173,6 +173,19 @@
 	  <div class="modal-footer">
             <button id="search_modal_close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button id="search_modal_confirm" type="button" class="btn btn-primary">Save changes</button>
+	  </div>
+	</div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="module_view_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+            <h4 class="modal-title">모듈뷰</h4>
+	  </div>
+	  <div class="modal-body">
+	    <iframe id="modal_iframe"></iframe>
 	  </div>
 	</div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

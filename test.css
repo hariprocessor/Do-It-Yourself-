@@ -71,7 +71,7 @@ body {
     visibility: hidden;    
 }
 #upload1 {
-    position:fixed; top:2%; right:10%;
+    position:fixed; top:2%; right:11%;
     visibility: hidden;    
 }
 
@@ -116,4 +116,17 @@ div.usage_modal {
 
 div.credit_modal {
   height : 80px;
+}
+
+#module_view_modal .modal-dialog{
+    width:1024px;
+}
+
+#module_view_modal .modal-body {
+    height:600px;
+}
+
+#module_view_modal iframe {
+    width:1000px;
+    height:580px;
 }

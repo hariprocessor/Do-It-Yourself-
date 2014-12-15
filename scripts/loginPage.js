@@ -1,45 +1,26 @@
-/* 원들 사이의 선을 그려주는 함수 */
-jsPlumb.ready(function() {
-    
-    var instance = jsPlumb.getInstance({
+/* 원들 사이 선 그리기 */
+jsPlumb.ready(function() {    
+    var jsplumb = jsPlumb.getInstance({
         Connector:"StateMachine",
         PaintStyle:{ lineWidth:3, strokeStyle:"#bd4932", "solidstyle":"2 4" },
         Endpoint:"Blank",
         Container:"perimeter-demo"
     });
 
-    var mains = jsPlumb.getSelector('.login-page');
-    // make everything draggable
-    instance.draggable(mains);
-    
-    // suspend drawing and initialise.
-    instance.doWhileSuspended(function() {
+    var login_page = jsPlumb.getSelector('.login-page');
+    jsplumb.draggable(login_page);
         
-        // loop through them and connect each one to each other one.
-        for (var j = 1; j < mains.length; j++) {
-            instance.connect({
-                source:mains[0],  // just pass in the current node in the selector for source 
-                target:mains[j],
-                // here we supply a different anchor for source and for target, and we get the element's "data-shape"
-                // attribute to tell us what shape we should use, as well as, optionally, a rotation value.
-                anchors:[
-                    [ "Perimeter", { shape:mains[0].getAttribute("data-shape"), rotation:mains[0].getAttribute("data-rotation") }],
-                    [ "Perimeter", { shape:mains[j].getAttribute( "data-shape"), rotation:mains[j].getAttribute("data-rotation") }]
-                ]
-            });
-            
-        }        
-    });
-
-    jsPlumb.fire("jsPlumbDemoLoaded", instance);
-
+    for (var j = 1; j < login_page.length; j++) {
+        jsplumb.connect({
+            source:login_page[0],   
+            target:login_page[j],
+            anchors:[
+                [ "Perimeter", { shape:login_page[0].getAttribute("data-shape"), rotation:login_page[0].getAttribute("data-rotation") }],
+                [ "Perimeter", { shape:login_page[j].getAttribute("data-shape"), rotation:login_page[j].getAttribute("data-rotation") }]
+            ]
+        });        
+    }        
 });
-
-
-
-
-
-
 
 $(document).ready(function() {
     
@@ -96,6 +77,7 @@ $(document).ready(function() {
             }
         });
 
+    /* 모달창 닫기 */
     $('.close').click(function() {
         $('.overlay-container').fadeOut().end().find('.window-container').removeClass('window-container-visible');
     });
