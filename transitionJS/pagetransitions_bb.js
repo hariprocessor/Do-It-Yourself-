@@ -6,13 +6,13 @@ function signinCallback(authResult) {
     	
 	/* hari code */
 	gapi.auth.setToken(authResult);
-	console.log(getEmail());
 	/**/
 	loginFlag = true;
 	$("#transTrigger").trigger("mousedown").trigger("mouseup");
 	$("loginStatus").update("callback!");	
+
     } else {
-	console.log('Sign-in state: ' + authResult['error']);
+
 	loginFlag = false;
     }
 
@@ -34,13 +34,11 @@ function getEmailCallback(obj){
       message += obj['email'];
     }
     message += ":)";
-    //console.log(obj);   // 전체 개체를 검사하려면 주석을 해제합니다.
 
     el.innerHTML = message;
     //toggleElement('email');
     if (obj['email']) {
 	email = obj['email'];
-	console.log(email);
     }
 
     $.ajax({
@@ -50,20 +48,19 @@ function getEmailCallback(obj){
 	    email: email
 	},
 	success:function(data){
-	    console.log(data);
 	    coordinate();
 	    modulelist();
 	    $("#lock").css("visibility","visible");
 	    $("#upload1").css("visibility","visible");
-      $("#resetIframe").css("visibility","visible");
-      $('.close').trigger("click");
+	    $("#resetIframe").css("visibility","visible");
+	    $('.close').trigger("click");
 	}
     });
 }
 /**/
 
 var PageTransitions = (function() {
-	var elementPositionX, elementPositionY;
+    var elementPositionX, elementPositionY;
     var $rootDiv = $( '#rootDiv' ),
     $transTarget = $rootDiv.children( 'div.transTarget' ),
     $trigger = $( '#transTrigger' ),
@@ -191,7 +188,6 @@ function modulelist(){
 }
 
 function modulelist_json(ajax){
-//    console.log(ajax.responseText);
     var data = JSON.parse(ajax);
    for (var i = 0; i < data.length; i++){
        var li = document.createElement("li");
@@ -226,8 +222,6 @@ function coordinate_json(ajax){
 	
 	if(x != -1 && y != -1){
 	    id = data[i]['id'];
-	    console.log(data);
-	    console.log(id);
             test.createModule("testmodule_" + id);
             test.setModulePos("testmodule_" + id, x, y);
 	    $("#testmodule_"+id+" p")[0].innerHTML = data[i]['name'];

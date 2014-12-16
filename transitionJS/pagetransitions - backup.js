@@ -9,8 +9,9 @@ function signinCallback(authResult) {
 	console.log(getEmail());
 	/**/
 	loginFlag = true;
-	$("#transTrigger").trigger("mousedown").trigger("mouseup");
-	$("loginStatus").update("callback!");	
+	$("#iterateEffects").trigger("mousedown").trigger("mouseup");
+	$("loginStatus").update("callback!");
+	
     } else {
 	console.log('Sign-in state: ' + authResult['error']);
 	loginFlag = false;
@@ -55,20 +56,18 @@ function getEmailCallback(obj){
 	    modulelist();
 	    $("#lock").css("visibility","visible");
 	    $("#upload1").css("visibility","visible");
-      $("#resetIframe").css("visibility","visible");
-      $('.close').trigger("click");
+
 	}
     });
 }
 /**/
 
 var PageTransitions = (function() {
-	var elementPositionX, elementPositionY;
-    var $rootDiv = $( '#rootDiv' ),
-    $transTarget = $rootDiv.children( 'div.transTarget' ),
-    $trigger = $( '#transTrigger' ),
+    var $main = $( '#pt-main' ),
+    $pages = $main.children( 'div.pt-page' ),
+    $iterate = $( '#iterateEffects' ),
     animcursor = 1,
-    pagesCount = $transTarget.length,
+    pagesCount = $pages.length,
     current = 0,
     isAnimating = false,
     endCurrPage = false,
@@ -83,37 +82,61 @@ var PageTransitions = (function() {
     animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
     // support css animations
     support = Modernizr.cssanimations;
-    
+    var elementPositionX, elementPositionY;
     function init() {
-	  	$transTarget.each( function() {
-	  	    var $page = $( this );
-	  	    $page.data( 'originalClassList', $page.attr( 'class' ) );
-	  	} );
-	  	$transTarget.eq(current).addClass( 'transCurrent' );
-	  	$trigger.on( 'mousedown', function(){
-	  	    elementPositionX = $trigger.position();
-	  	    //alert(elementPositionX.left+" || "+elementPositionX.top);
-		});
-	  	$trigger.on( 'mouseup', function() {
-	  	    elementPositionY = $trigger.position();
-	  	    //alert(elementPositionY.left+" || "+elementPositionY.top);
-	  	    if(elementPositionX.left==elementPositionY.left && elementPositionX.top==elementPositionY.top){
-	  		if(loginFlag){
-	  		    if( animcursor > 67 ) {
-	  			animcursor = 1;
-	  		    }
-			    $(".close").trigger("click");
-	  		    nextPage( animcursor );
-	  		    ++animcursor;
-	  		}
-	  	    }	
-	  	    
-	  	} );
+
+  	$pages.each( function() {
+  	    var $page = $( this );
+  	    $page.data( 'originalClassList', $page.attr( 'class' ) );
+  	} );
+
+  	$pages.eq( current ).addClass( 'pt-page-current' );
+
+
+  	$( '#dl-menu' ).dlmenu( {
+  	    animationClasses : { in : 'dl-animate-in-2', out : 'dl-animate-out-2' },
+  	    onLinkClick : function( el, ev ) {
+  		ev.preventDefault();
+  		nextPage( el.data( 'animation' ) );
+  	    }
+  	} );
+  	$iterate.on( 'mousedown', function(){
+  	    elementPositionX = $iterate.position();
+  	    //alert(elementPositionX.left+" || "+elementPositionX.top);
+	});
+  	$iterate.on( 'mouseup', function() {
+  	    elementPositionY = $iterate.position();
+  	    //alert(elementPositionY.left+" || "+elementPositionY.top);
+  	    if(elementPositionX.left==elementPositionY.left && elementPositionX.top==elementPositionY.top){
+  		if(loginFlag){
+  		    if( isAnimating ) {
+  			return false;
+  		    }
+  		    if( animcursor > 67 ) {
+  			animcursor = 1;
+  		    }
+		    $(".close").trigger("click");
+  		    nextPage( animcursor );
+  		    ++animcursor;
+  		}
+  	    }	
+  	    
+  	} );
+  	
+
+
     }
 
     function nextPage(options ) {
   	var animation = (options.animation) ? options.animation : options;
-  	var $currPage = $transTarget.eq(current);
+
+  	if( isAnimating ) {
+  	    return false;
+  	}
+
+  	isAnimating = true;
+  	
+  	var $currPage = $pages.eq( current );
 
   	if(options.showPage){
   	    if( options.showPage < pagesCount - 1 ) {
@@ -132,9 +155,9 @@ var PageTransitions = (function() {
   	    }
   	}
 
-  	var $nextPage = $transTarget.eq( current ).addClass( 'transCurrent' ),
+  	var $nextPage = $pages.eq( current ).addClass( 'pt-page-current' ),
 
-  	outClass = 'pt-page-rotateCubeLeftOut';
+  	outClass = 'pt-page-rotateCubeLeftOut pt-page-ontop';
   	inClass = 'pt-page-rotateCubeLeftIn';
   	$currPage.addClass( outClass ).on( animEndEventName, function() {
   	    $currPage.off( animEndEventName );
@@ -168,7 +191,7 @@ var PageTransitions = (function() {
 
     function resetPage( $outpage, $inpage ) {
   	$outpage.attr( 'class', $outpage.data( 'originalClassList' ) );
-  	$inpage.attr( 'class', $inpage.data( 'originalClassList' ) + ' transCurrent' );
+  	$inpage.attr( 'class', $inpage.data( 'originalClassList' ) + ' pt-page-current' );
     }
 
     init();

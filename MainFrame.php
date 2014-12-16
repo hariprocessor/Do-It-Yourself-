@@ -31,10 +31,10 @@
   </head>
   <body>
 
-    <!-- 큐브회전에 사용된 페이지1, 페이지2가 각각 div형태로 아래 pt-page-1(스타트화면), pt-page-2(메인프레임) -->
-    <div id="pt-main" class="pt-perspective">
-      <div class="pt-page pt-page-1 mainpage">
-	<div id="iterateEffects" class="login-page sign_in circle" data-type="zoomin" data-shape="Circle">
+    <!-- 큐브회전에 사용된 페이지1, 페이지2가 각각 div형태로 아래 rootDiv(스타트화면), transTarget(메인프레임) -->
+    <div id="rootDiv" class="transInit">
+      <div class="transTarget  mainpage">
+	<div id="transTrigger" class="login-page sign_in circle" data-type="zoomin" data-shape="Circle">
 	  Sign in
 	</div>
 	
@@ -77,7 +77,7 @@
       </div>
 
 
-    <div class="pt-page pt-page-2 mainpage" id="testmain">
+    <div class="transTarget mainpage" id="testmain">
     <div><p id="loginStatus" style="margin-left: 50pt">welcome!</p></div>
 	<!-- Side 메뉴 -->
 	<span id = "menubutton" class="entypo-menu"></span>

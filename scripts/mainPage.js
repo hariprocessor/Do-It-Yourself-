@@ -69,13 +69,10 @@ $(document).ready(function() {
 	    var id = ui.draggable[0].id;
 
 	    if($("#testmodule_"+id).length){
-		console.log("exists");
 		return;
 	    }
 	    
             if(ui.draggable.attr('class').search("default") != -1){
-                console.log(ui.draggable[0]);
-
                 if(module_count <= 12){
                     test.createModule("testmodule_" + id);
                     test.setModulePos("testmodule_" + id,800 + 250 * Math.cos((360 * module_count / 12 ) * Math.PI / 180 ),300 + 250 * Math.sin((360 / 12 * module_count) * Math.PI / 180));
@@ -215,15 +212,6 @@ window.onload = function (){
     cancelButton.onclick = cancel;
     confirmButton.onclick = determine;
 
-/*
-    $( "#main" ).droppable({
-	drop: function( event, ui ) {
-	    console.log(ui.draggable[0].id);
-	    ui.draggable[0].remove();
-	    
-	}
-    });
-*/
 }
 
 
@@ -233,7 +221,6 @@ function lock(){
 	var s = arr[i].id.split('_');
 	var id = s[1];
 	var offset = $("#testmodule_"+id).offset();
-	console.log("id: " + id+" x: "+offset.left+" y: "+offset.top);
 	$.ajax({
 	    type: "POST",
 	    url: "/controller/lock.php",
@@ -242,7 +229,6 @@ function lock(){
 		x : offset.left,
 		y : offset.top
 	    }, success : function(){
-		console.log("lock success");
 	    }
 
 	});
@@ -257,7 +243,6 @@ function search_module(){
 	    q : $("#q")[0].value
 	},
 	success:search_module_json
-//	success:function(data){	    console.log(data);	}
     });
 }
 
@@ -321,7 +306,6 @@ function search_modal_confirm(){
 
 
 function upload1(){
-    console.log('hi');
     var url = "http://diy.hariprocessor.com/upload/upload.html";
     window.open(url, "", "width=300, height=600, resizable=no, scrollbars=no, status=no");
 }
@@ -335,8 +319,6 @@ function url(id, frame){
 	    id : id
 	},
 	success:function(data){
-	    console.log('---data');
-	    console.log(data);
 	    frame.attr('src', data);
 	}
     });

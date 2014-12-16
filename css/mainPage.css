@@ -1,0 +1,136 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+#menu {
+    border:2px solid black;
+    border-radius: 15px;
+    width: 10%;
+    height: 98%;
+    position:fixed;
+    margin: 0px;
+    padding: 0px;
+    z-index: 9999;
+    left: -10%;
+    float:left;
+    border-radius: 15px;
+}
+
+/* Main */
+#main {
+    margin-left: 10%;
+    width: 85%;
+    position: absolute;
+}
+
+#module_list{
+    list-style-type: none;
+}
+
+/* Module Delete  */
+.hidden{
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
+}
+
+.default{
+    border: 2px solid #1abc9c;
+    background: #1abc9c;
+}
+.selected{
+    border: 2px solid #ED0000;
+    background: #ED0000;
+}
+
+/* Sidebar button
+----------------------------------------------------------*/
+#menubutton:hover{
+    background: #1abc9c;
+    color: #f3f3f3;
+    cursor:pointer;
+}
+
+#menubutton{
+    position: fixed;
+    top:10px;
+    left: 10px;
+    -webkit-box-shadow: inset 0 0 0 0.1em #1abc9c;
+    box-shadow: inset 0 0 0 0.1em #1abc9c;
+    font-size: 1.6em;
+    padding: .2em .4em;
+    height: 40px !important;
+    border-radius: 3px;
+}
+
+/* Sidebar
+-----------------------------------------------------------------------------------------*/
+
+.menu {
+    position: fixed;
+    z-index: 9999999;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 200px;
+    background: #f3f3f3;
+    -webkit-transition: left 0.3s ease, -webkit-box-shadow 0.3s ease 0.2s;
+    transition: left 0.3s ease, box-shadow 0.3s ease 0.2s;
+    -webkit-box-shadow: 0.5em 0 0 0 #1abc9c, 0.6em 0 0 0 #17a689;
+    box-shadow: 0.5em 0 0 0 #1abc9c, 0.6em 0 0 0 #17a689;
+}
+
+#close {
+    float: right;
+    margin: -5.5rem 1rem;
+    font-size: 1.4em;
+    color: #fa598d;
+    text-align: right;
+    cursor:pointer;
+}
+
+.menu.closed {
+    left: -260px;
+    -webkit-box-shadow: 0 0 0 #1abc9c;
+    box-shadow: 0 0 0 #1abc9c;
+}
+
+.menu p {
+    padding: .5em;
+    color: #1abc9c;
+    font-size:25px;
+
+}
+
+.menu ul {
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    width: 90%;
+    margin: 5px 10px;
+    float: left;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 3px 6px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    
+    color: #f3f3f3;
+    height:35px;
+}
+
+
+.menu ul li:hover {
+    background: #17a689;
+    border-color: #17a689;
+}

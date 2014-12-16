@@ -1,10 +1,8 @@
 /* 원들 사이 선 그리기 */
 jsPlumb.ready(function() {    
-    var jsplumb = jsPlumb.getInstance({
-        Connector:"StateMachine",
-        PaintStyle:{ lineWidth:3, strokeStyle:"#bd4932", "solidstyle":"2 4" },
-        Endpoint:"Blank",
-        Container:"perimeter-demo"
+    var jsplumb = jsPlumb.getInstance({      
+        PaintStyle:{ lineWidth:3, strokeStyle:"#bd4932"},
+        Endpoint:"Blank"        
     });
 
     var login_page = jsPlumb.getSelector('.login-page');
@@ -15,8 +13,10 @@ jsPlumb.ready(function() {
             source:login_page[0],   
             target:login_page[j],
             anchors:[
-                [ "Perimeter", { shape:login_page[0].getAttribute("data-shape"), rotation:login_page[0].getAttribute("data-rotation") }],
-                [ "Perimeter", { shape:login_page[j].getAttribute("data-shape"), rotation:login_page[j].getAttribute("data-rotation") }]
+                [ "Perimeter", { shape:login_page[0].getAttribute("data-shape"), 
+                    rotation:login_page[0].getAttribute("data-rotation") }],
+                [ "Perimeter", { shape:login_page[j].getAttribute("data-shape"), 
+                    rotation:login_page[j].getAttribute("data-rotation") }]
             ]
         });        
     }        
